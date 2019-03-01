@@ -3,24 +3,24 @@
 /**
  * Module dependencies.
  */
-var mysql = require('mysql');
-connection = mysql.createConnection({
-  host: '192.168.236.131',
-  user: 'rvuser3',
-  password: 'Monaco20!!'
-});
+// var mysql = require('mysql');
+// connection = mysql.createConnection({
+//   host: '192.168.236.131',
+//   user: 'rvuser3',
+//   password: 'Monaco20!!'
+// });
 
-connection.connect(function (err) {
+// connection.connect(function (err) {
 
-  if (err) {
-    console.log("error", err);
-    process.exit(1);
-  }
+//   if (err) {
+//     console.log("error", err);
+//     //process.exit(1);
+//   }
 
   //var db = conn({database: 'rveloz'});
   console.log("Conexion exitosa");
   
-  var app = require('../app')(connection);
+  var app = require('../app');
   var debug = require('debug')('expressapimysql:server');
   var http = require('http');
 
@@ -104,4 +104,4 @@ connection.connect(function (err) {
       'port ' + addr.port;
     debug('Listening on ' + bind);
   }
-}); //end mysql conect
+// }); //end mysql conect

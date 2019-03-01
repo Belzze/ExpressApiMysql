@@ -3,9 +3,9 @@ var router = express.Router();
 //obtener quiebre
 //replica set
 //sharring 
-function quiebreInit(db) {
+//function quiebreInit(db) {
 
-    var mysqlModel = require('./mysqlModel')(db);
+    var mysqlModel = require('./mysqlModel');
 
     // router.get('/', function (req, res, next) {
     //     res.json({
@@ -32,8 +32,8 @@ function quiebreInit(db) {
 
     });
 
-    return router;
+//     return router;
 
-} // quiebre 
+// } // quiebre 
 
-module.exports = quiebreInit;
+module.exports = router;
