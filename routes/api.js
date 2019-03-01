@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-var quiebreApi = require('./api/quiebre');
+function apiInit(db){
 
+var quiebreApi = require('./api/quiebre')(db);
 
 ///ruta y el enturador
 router.use('/quiebre', quiebreApi);
 
-
-module.exports = router;
+return router;
+}
+module.exports = apiInit;

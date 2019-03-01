@@ -4,8 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+//aqui le agregarmos para que pida la base de datos D:
+function appInit(db){
+
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api')
 
 
@@ -22,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
+app.use('/api', apiRouter(db));
 // app.use('/users', usersRouter);
 //catch 404 and dorware to error handler
 app.use(function( req, res, next){
@@ -45,5 +48,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-module.exports = app;
+return app;
+}//fin del appInit
+module.exports = appInit;
