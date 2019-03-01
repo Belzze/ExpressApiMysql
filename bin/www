@@ -7,11 +7,10 @@ var mysql = require('mysql');
 connection = mysql.createConnection({
   host: '192.168.236.131',
   user: 'rvuser3',
-  password: 'Monaco20!!',
-  database: 'rveloz'
+  password: 'Monaco20!!'
 });
 
-connection.connect(function (err, conn) {
+connection.connect(function (err) {
 
   if (err) {
     console.log("error", err);
@@ -21,7 +20,7 @@ connection.connect(function (err, conn) {
   //var db = conn({database: 'rveloz'});
   console.log("Conexion exitosa");
   
-  var app = require('../app')(conn);
+  var app = require('../app')(connection);
   var debug = require('debug')('expressapimysql:server');
   var http = require('http');
 
