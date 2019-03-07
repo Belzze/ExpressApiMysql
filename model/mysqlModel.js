@@ -1,10 +1,4 @@
 
-// var mysql = require('mysql');
-// connection = mysql.createConnection({
-//   host: '192.168.236.131',
-//   user: 'rvuser3',
-//   password: 'Monaco20!!'
-// });
 const connection = require('./conexion/conexion');
 
 connection.connect(function(err){
@@ -21,7 +15,7 @@ let mysqlModel={};
 
 mysqlModel.getQuiebre = (handler) =>{
     
-    connection.query('SELECT outStockPorHoraNombreSucursal as Sucursal, TRUNCATE((sum(outStockPorHoraHoraSinStock) / sum(outStockPorHoraHorasDispobibles))*100,2) AS Quiebre FROM rveloz.outstockporhora where outStockPorHoraNombreSucursal != "DSF DEALER - T1 - RECARGA VELOZ S.A. DE C.V."group by outStockPorHoraNombreSucursal',
+    connection.query('select * from quiebresucursal',
         (err,rows)=>{
             if(err){
                 handler(err,null);
