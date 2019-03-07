@@ -1,10 +1,12 @@
 
-var mysql = require('mysql');
-connection = mysql.createConnection({
-  host: '192.168.236.131',
-  user: 'rvuser3',
-  password: 'Monaco20!!'
-});
+// var mysql = require('mysql');
+// connection = mysql.createConnection({
+//   host: '192.168.236.131',
+//   user: 'rvuser3',
+//   password: 'Monaco20!!'
+// });
+const connection = require('./conexion/conexion');
+
 connection.connect(function(err){
     if(err){
         console.error('error al conectarce: '+ err.stack);
@@ -25,12 +27,13 @@ mysqlModel.getQuiebre = (handler) =>{
                 handler(err,null);
             }else{
                 handler(null,rows);
+                // connection.end(function(err){
+                //     console.log('se termino la coneccion');                    
+                // })
             }
         }
     )
 }
-
-
 
 // function mysqlModel(){
 //     let lib={};

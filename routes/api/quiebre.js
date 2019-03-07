@@ -5,7 +5,7 @@ var router = express.Router();
 //sharring 
 //function quiebreInit(db) {
 
-    var mysqlModel = require('./mysqlModel');
+    var mysqlModel = require('../../model/mysqlModel');
 
     // router.get('/', function (req, res, next) {
     //     res.json({
