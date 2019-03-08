@@ -1,26 +1,36 @@
+// const connection = require('./conexion/conexion');
 
-const connection = require('./conexion/conexion');
+// connection.connect(function(err){
+//     if(err){
+//         console.error('error al conectarce: '+ err.stack);
+//         return;
+//     }
 
-connection.connect(function(err){
-    if(err){
-        console.error('error al conectarce: '+ err.stack);
+//     console.log('conectado con el id:' + connection.threadId);
+
+// });
+const pool = require('./conexion/conexion');
+
+pool.getConnection(function(err) {
+    if (err) {
+        console.error('error al conectarce: ' + err.stack);
         return;
     }
 
     console.log('conectado con el id:' + connection.threadId);
-    
+
 });
 
-let mysqlModel={};
+let mysqlModel = {};
 
-mysqlModel.getQuiebre = (handler) =>{
-    
-    connection.query('select * from quiebresucursal',
-        (err,rows)=>{
-            if(err){
-                handler(err,null);
-            }else{
-                handler(null,rows);
+mysqlModel.getQuiebre = (handler) => {
+
+    pool.getConnection.connection.query('select * from quiebresucursal',
+        (err, rows) => {
+            if (err) {
+                handler(err, null);
+            } else {
+                handler(null, rows);
                 // connection.end(function(err){
                 //     console.log('se termino la coneccion');                    
                 // })
