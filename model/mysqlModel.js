@@ -20,10 +20,10 @@ mysqlModel.getQuiebre = (handler) => {
             throw err;
         }
         console.log('Conectado con el id:' + connection.threadId);        
-        connection.query('SELECT * FROM rveloz.quiebreSucursal',
+        connection.query('CALL pruebaAPI()',
         ( err, rows ) =>{
             if(!err){
-                handler(null, rows);
+                handler(null, rows[0]);
             }
         });
         connection.on('error', 
