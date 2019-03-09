@@ -2,9 +2,9 @@ var mysql = require('mysql');
 
 var pool  = mysql.createPool({
   connectionLimit : 10,
-  host  : 'sompopobi.mysql.database.azure.com',
-  user  : 'rveloz@sompopobi',
-  password  : 'DoNOzI',
+  host  : 'localhost',
+  user  : 'root',
+  password  : 'monaco20',
   database  : 'rveloz',
   debug : false,
 })
