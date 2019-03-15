@@ -1,1 +1,2 @@
-UPDATE outStockPorHora SET outStockPorHoraFechaStockFecha = STR_TO_DATE(outStockPorHoraFechaStock, "%d-%b-%y") WHERE outStockPorHoraFechaStockFecha = '1900-01-01';
+UPDATE outstockporhora SET outStockPorHoraFechaStockFecha = STR_TO_DATE(outStockPorHoraFechaStock, "%d-%b-%y") 
+WHERE outStockPorHoraFechaStockFecha = '1900-01-01';

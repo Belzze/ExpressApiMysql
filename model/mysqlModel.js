@@ -1,5 +1,7 @@
 // const connection = require('./conexion/conexion');
 
+const pool = require('./conexion/conexion');
+
 // connection.connect(function(err){
 //     if(err){
 //         console.error('error al conectarce: '+ err.stack);
@@ -7,37 +9,47 @@
 //     }
 
 //     console.log('conectado con el id:' + connection.threadId);
-
+    
 // });
-const pool = require('./conexion/conexion');
-
-pool.getConnection(function(err) {
-    if (err) {
-        console.error('error al conectarce: ' + err.stack);
-        return;
-    }
-
-    console.log('conectado con el id:' + connection.threadId);
-
-});
 
 let mysqlModel = {};
 
 mysqlModel.getQuiebre = (handler) => {
-
-    pool.getConnection.connection.query('select * from quiebresucursal',
-        (err, rows) => {
-            if (err) {
-                handler(err, null);
-            } else {
-                handler(null, rows);
-                // connection.end(function(err){
-                //     console.log('se termino la coneccion');                    
-                // })
-            }
+    pool.getConnection(function ( err, connection ) {
+        if( err ) {
+            connection.release();
+            throw err;
         }
-    )
+        console.log('Conectado con el id:' + connection.threadId);        
+        connection.query('CALL quiebrePorSucursal()',
+        ( err, rows ) =>{
+            if(!err){
+                handler(null, rows[0]);
+            }
+        });
+        connection.on('error', 
+        ( err ) =>{
+            throw err;
+            return;
+        })
+    });
 }
+
+// mysqlModel.getQuiebre = (handler) =>{
+    
+//     connection.query('SELECT * FROM rveloz.quiebreSucursal',
+//         (err,rows)=>{
+//             if(err){
+//                 handler(err,null);
+//             }else{
+//                 handler(null,rows);
+//                 // connection.end(function(err){
+//                 //     console.log('se termino la coneccion');                    
+//                 // })
+//             }
+//         }
+//     )
+// }
 
 // function mysqlModel(){
 //     let lib={};
