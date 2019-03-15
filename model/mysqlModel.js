@@ -20,7 +20,7 @@ mysqlModel.getQuiebre = (handler) => {
             throw err;
         }
         console.log('Conectado con el id:' + connection.threadId);        
-        connection.query('CALL pruebaAPI()',
+        connection.query('CALL quiebrePorSucursal()',
         ( err, rows ) =>{
             if(!err){
                 handler(null, rows[0]);
