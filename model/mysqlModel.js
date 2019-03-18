@@ -23,7 +23,7 @@ mysqlModel.getQuiebre = (handler) => {
         connection.query('CALL quiebrePorSucursal()',
         ( err, rows ) =>{
             if(!err){
-                handler(null, rows[0]);
+			handler(null, {sucursales:rows[0]});
             }
         });
         connection.on('error', 
