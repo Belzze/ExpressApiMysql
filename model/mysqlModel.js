@@ -1,3 +1,4 @@
+// const connection = require('./conexion/conexion');
 
 const pool = require('./conexion/conexion');
 
@@ -11,7 +12,7 @@ const pool = require('./conexion/conexion');
     
 // });
 
-let mysqlModel={};
+let mysqlModel = {};
 
 mysqlModel.getQuiebre = (handler) => {
     pool.getConnection(function ( err, connection ) {
