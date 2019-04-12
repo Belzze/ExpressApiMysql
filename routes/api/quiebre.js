@@ -23,13 +23,24 @@ var router = express.Router();
         });
     }); //get//
 
-    router.post('/new', function (req, res, next) {
-        var _thingsData = req.body;
-        console.log(_thingsData);
-        res.json({
-            "mng": "ok"
+    router.get('/departamento', function (req, res, next) {
+        mysqlModel.getQuiebrePorDepartamento((err,data)=>{
+            if(err){
+                console.log(err);                
+                return res.status(500).jsonp({error:"Algo paso"});
+            }
+            res.status(200).jsonp(data);
         });
+    });
 
+    router.get('/municipio', function (req, res, next) {
+        mysqlModel.getQuiebrePorMunicipio((err,data)=>{
+            if(err){
+                console.log(err);                
+                return res.status(500).jsonp({error:"Algo paso"});
+            }
+            res.status(200).jsonp(data);
+        });
     });
 
 //     return router;
